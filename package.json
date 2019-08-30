@@ -1,0 +1,30 @@
+{
+  "name": "tours-front",
+  "version": "1.0.0",
+  "description": "My good Nuxt.js project",
+  "author": "kitagawa",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt --port 8000",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.5.4",
+    "@nuxtjs/dotenv": "^1.4.0",
+    "firebase": "^6.4.0",
+    "node-sass": "^4.12.0",
+    "nuxt": "^2.0.0",
+    "nuxt-material-design-icons": "^1.0.4",
+    "nuxt-vue-material": "^1.2.0",
+    "sass-loader": "^7.2.0"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "vue-jest": "^4.0.0-0"
+  }
+}
