@@ -1,15 +1,22 @@
 <template>
   <div>
-    <AppHeader :isLogin="isLogin" />
-    <nuxt />
+    <div v-show="isLoading" class="loader">Now loading...</div>
+    <div v-show="!isLoading">
+      <AppHeader :isLogin="isLogin" />
+      <nuxt />
+    </div>
   </div>
 </template>
 
 <script>
 import firebase from '~/plugins/firebase'
 import AppHeader from "~/components/organisms/AppHeader"
+import {mapState} from 'vuex'
 
 export default {
+  components: {
+    AppHeader
+  },
   data() {
     return {
       isLogin: false
@@ -23,9 +30,7 @@ export default {
       }
     })
   },
-  components: {
-    AppHeader
-  }
+  computed: mapState(['isLoading'])
 }
 </script>
 

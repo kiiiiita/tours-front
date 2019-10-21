@@ -1,21 +1,21 @@
-import axios from "axios";
+import axios from "axios"
 import firebase from '~/plugins/firebase'
 
-const BASE_URL = "http://localhost:3000/api/v1/";
+const BASE_URL = "http://localhost:3000/api/v1/"
 
 export default {
   async getUser({ commit }, payload) {
+    await commit("showLoading")
     let response = await axios
       .get(`${BASE_URL}users`, {
         headers: { "Content-Type": "application/json" },
         params: {
-          user: {
-            email: payload.email
-          }
+          email: payload.email,
         },
         timeout: 15000
       })
       .catch(error => {
+        commit("hideLoading")
         console.error(error)
         this.$router.push("/error")
       })
@@ -25,11 +25,13 @@ export default {
             email: payload.email
           })
           .catch(error => {
+            commit("hideLoading")
             console.error(error)
             this.$router.push("/error")
           })
       }
       commit("setUser", response.data)
+      commit("hideLoading")
   },
   async saveUser({ commit }, payload) {
     const response = await axios
@@ -45,6 +47,21 @@ export default {
       });
     commit("setUser", response.data)
   },
+  async getMembers({ commit }, payload) {
+    const response = await axios
+      .get(`${BASE_URL}members`, {
+        headers: { "Content-Type": "application/json" },
+        params: {
+          id: payload.user.id,
+        },
+        timeout: 15000
+      })
+      .catch(error => {
+        console.error(error)
+        this.$router.push("/error")
+      });
+    commit("setMembers", response.data)
+  },
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider()
     firebase.auth().signInWithRedirect(provider)
@@ -58,4 +75,4 @@ export default {
         alert(error)
       })
   }
-};
+}
