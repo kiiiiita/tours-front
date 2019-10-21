@@ -59,6 +59,8 @@ export default {
         'MdToolbar',
         'MdField',
         'MdCard',
+        'MdAvatar',
+        'MdRipple',
       ]
     }],
     ['nuxt-material-design-icons'],
