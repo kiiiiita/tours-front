@@ -9,14 +9,12 @@
           <div class="md-title">{{ member.name }}</div>
           <div class="md-subhead">{{ member.tweet }}</div>
         </md-card-header-text>
-
         <md-card-media md-big>
-          <img src="member.avatar" alt="Member">
+          <img :src="member.avatar" alt="Member">
         </md-card-media>
       </md-card-header>
-
       <md-card-actions>
-        <md-button>Detaile</md-button>
+        <md-button @click="$router.push(`/members/${member.id}`, () => {}, () => {})">Detaile</md-button>
       </md-card-actions>
     </md-card>
   </div>
@@ -26,7 +24,7 @@
 export default {
   computed: {
     members() {
-      return this.$store.state.members || {}
+      return this.$store.state.members || []
     },
     user() {
       return this.$store.state.user

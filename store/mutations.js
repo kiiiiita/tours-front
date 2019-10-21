@@ -5,6 +5,9 @@ export default {
   setMembers(state, members) {
     state.members = members
   },
+  setMember(state, member) {
+    state.member = member
+  },
   hideLoading(state) {
     state.isLoading = false;
   },

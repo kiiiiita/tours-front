@@ -62,6 +62,18 @@ export default {
       });
     commit("setMembers", response.data)
   },
+  async getMember({ commit }, payload) {
+    const response = await axios
+      .get(`${BASE_URL}members/${payload.member}`, {
+        headers: { "Content-Type": "application/json" },
+        timeout: 15000
+      })
+      .catch(error => {
+        console.error(error)
+        this.$router.push("/error")
+      });
+    commit("setMember", response.data)
+  },
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider()
     firebase.auth().signInWithRedirect(provider)
